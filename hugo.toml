@@ -1,0 +1,70 @@
+baseURL = 'https://Nuanda79.github.io/metal-detecting-italia/'
+languageCode = 'it-it'
+title = 'Metal Detecting Italia'
+theme = 'PaperMod'
+
+enableRobotsTXT = true
+
+[pagination]
+  pagerSize = 10
+buildDrafts = false
+buildFuture = false
+buildExpired = false
+
+[minify]
+  disableXML = true
+
+[params]
+  env = 'production'
+  description = "Rassegna quotidiana di news, video e offerte per gli appassionati di metal detecting in Italia."
+  author = "Metal Detecting Italia"
+  defaultTheme = "auto"
+  ShowShareButtons = true
+  ShowReadingTime = true
+  displayFullLangName = true
+  ShowPostNavLinks = true
+  ShowBreadCrumbs = true
+  ShowCodeCopyButtons = false
+  ShowRssButtonInSectionTermList = true
+  ShowToc = false
+  comments = false
+
+  [params.homeInfoParams]
+    Title = "🔎 Metal Detecting Italia"
+    Content = "La rassegna quotidiana per chi ama il metal detecting: news, video e offerte, tutto in un posto solo."
+
+  [[params.socialIcons]]
+    name = "youtube"
+    url = "https://www.youtube.com/@Nuanda1979"
+
+[[menu.main]]
+  identifier = "news"
+  name = "News"
+  url = "/news/"
+  weight = 10
+
+[[menu.main]]
+  identifier = "video"
+  name = "Video"
+  url = "/video/"
+  weight = 20
+
+[[menu.main]]
+  identifier = "offerte"
+  name = "Offerte"
+  url = "/offerte/"
+  weight = 30
+
+[[menu.main]]
+  identifier = "archives"
+  name = "Archivio"
+  url = "/archives/"
+  weight = 40
+
+[outputs]
+  home = ["HTML", "RSS", "JSON"]
+
+[markup]
+  [markup.goldmark]
+    [markup.goldmark.renderer]
+      unsafe = true
