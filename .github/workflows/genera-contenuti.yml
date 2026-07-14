@@ -1,0 +1,55 @@
+name: Genera contenuti quotidiani
+
+on:
+  schedule:
+    # Ogni giorno alle 6:00 UTC (le 8:00 in Italia in estate, le 7:00 in inverno)
+    - cron: '0 6 * * *'
+  workflow_dispatch: {}  # permette di lanciarlo anche manualmente da GitHub
+
+permissions:
+  contents: write
+
+jobs:
+  genera:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout del repository
+        uses: actions/checkout@v4
+
+      - name: Setup Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+
+      - name: Installa dipendenze
+        run: pip install -r scripts/requirements.txt
+
+      - name: Genera news del giorno
+        env:
+          GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
+        run: python scripts/news_aggregator.py
+        continue-on-error: true
+
+      - name: Genera video del giorno
+        env:
+          YOUTUBE_API_KEY: ${{ secrets.YOUTUBE_API_KEY }}
+        run: python scripts/yt_finder.py
+        continue-on-error: true
+
+      - name: Genera offerte del giorno
+        env:
+          GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
+        run: python scripts/amazon_offers.py
+        continue-on-error: true
+
+      - name: Commit e push dei nuovi contenuti
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add content/
+          if git diff --staged --quiet; then
+            echo "Nessun nuovo contenuto oggi, niente da committare."
+          else
+            git commit -m "Contenuti automatici del $(date +'%Y-%m-%d')"
+            git push
+          fi
