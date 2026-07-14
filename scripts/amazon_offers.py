@@ -20,6 +20,7 @@ Uso:
 import os
 import sys
 import csv
+import re
 import datetime
 
 # ---------------------------------------------------------------------------
@@ -62,8 +63,9 @@ def leggi_prodotti():
         nome = riga[0].strip()
         link = riga[1].strip() if len(riga) > 1 else ""
         descrizione = riga[2].strip() if len(riga) > 2 else ""
+        immagine = riga[3].strip() if len(riga) > 3 else ""
         if nome and link:
-            prodotti.append({"nome": nome, "link": link, "descrizione": descrizione})
+            prodotti.append({"nome": nome, "link": link, "descrizione": descrizione, "immagine": immagine})
 
     if not prodotti:
         print("ERRORE: nessun prodotto valido trovato nel file.")
@@ -111,29 +113,54 @@ def genera_descrizione(nome_prodotto):
 
 
 # ---------------------------------------------------------------------------
-# STEP 4: GENERA IL MARKDOWN
+# STEP 4: GENERA UN FILE MARKDOWN PER OGNI PRODOTTO (una card per prodotto)
 # ---------------------------------------------------------------------------
 
-def genera_markdown(prodotti_oggi):
+def slugify(testo):
+    testo = testo.lower().strip()
+    testo = re.sub(r"[^a-z0-9]+", "-", testo)
+    return testo.strip("-")[:60]
+
+
+def genera_file_prodotto(p, data_italiana, data_iso, descrizione):
+    titolo_pulito = p["nome"].replace('"', "'")
+
+    righe = [
+        "---",
+        f'title: "{titolo_pulito}"',
+        f"date: {data_iso}",
+        "draft: false",
+        'tags: ["offerte", "prodotti"]',
+        'categories: ["offerte"]',
+    ]
+    if p.get("immagine"):
+        righe.append("cover:")
+        righe.append(f'  image: "{p["immagine"]}"')
+        righe.append(f'  alt: "{titolo_pulito}"')
+    righe += [
+        "---",
+        "",
+        "*Link di affiliazione Amazon: se acquisti tramite questo link, "
+        "riceviamo una piccola commissione senza costi aggiuntivi per te.*",
+        "",
+    ]
+    if descrizione:
+        righe.append(descrizione)
+        righe.append("")
+    righe.append(f"[Vedi su Amazon]({p['link']})")
+    righe.append("")
+
+    return "\n".join(righe)
+
+
+def salva_prodotti(prodotti_oggi):
     mesi_it = ["gennaio", "febbraio", "marzo", "aprile", "maggio", "giugno",
                "luglio", "agosto", "settembre", "ottobre", "novembre", "dicembre"]
     oggi = datetime.date.today()
     data_italiana = f"{oggi.day} {mesi_it[oggi.month - 1]} {oggi.year}"
     data_iso = oggi.isoformat()
 
-    righe = [
-        "---",
-        f'title: "Prodotti consigliati — {data_italiana}"',
-        f"date: {data_iso}",
-        "draft: false",
-        'tags: ["offerte", "prodotti"]',
-        'categories: ["offerte"]',
-        "---",
-        "",
-        "*Link di affiliazione Amazon: se acquisti tramite questi link, "
-        "riceviamo una piccola commissione senza costi aggiuntivi per te.*",
-        "",
-    ]
+    os.makedirs(OUTPUT_DIR, exist_ok=True)
 
     for p in prodotti_oggi:
         descrizione = p["descrizione"]
@@ -145,27 +172,14 @@ def genera_markdown(prodotti_oggi):
                 print(f"  Attenzione: impossibile generare descrizione ({e})")
                 descrizione = ""
 
-        righe.append(f"### {p['nome']}")
-        if descrizione:
-            righe.append(descrizione)
-        righe.append("")
-        righe.append(f"[Vedi su Amazon]({p['link']})")
-        righe.append("")
+        slug = slugify(p["nome"])
+        nome_file = f"offerte-{oggi.isoformat()}-{slug}.md"
+        percorso = os.path.join(OUTPUT_DIR, nome_file)
 
-    return "\n".join(righe)
-
-
-# ---------------------------------------------------------------------------
-# STEP 5: SALVATAGGIO
-# ---------------------------------------------------------------------------
-
-def salva(contenuto):
-    os.makedirs(OUTPUT_DIR, exist_ok=True)
-    oggi = datetime.date.today().isoformat()
-    percorso = os.path.join(OUTPUT_DIR, f"offerte-{oggi}.md")
-    with open(percorso, "w", encoding="utf-8") as f:
-        f.write(contenuto)
-    print(f"\nPost offerte salvato in: {percorso}")
+        contenuto = genera_file_prodotto(p, data_italiana, data_iso, descrizione)
+        with open(percorso, "w", encoding="utf-8") as f:
+            f.write(contenuto)
+        print(f"  Salvato: {percorso}")
 
 
 # ---------------------------------------------------------------------------
@@ -179,8 +193,7 @@ def main():
     scelti = scegli_prodotti_oggi(prodotti)
     print(f"Prodotti scelti per oggi: {', '.join(p['nome'] for p in scelti)}\n")
 
-    markdown = genera_markdown(scelti)
-    salva(markdown)
+    salva_prodotti(scelti)
 
 
 if __name__ == "__main__":

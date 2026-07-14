@@ -12,6 +12,7 @@ Uso:
 
 import os
 import sys
+import re
 import datetime
 import requests
 
@@ -142,53 +143,51 @@ def raccogli_video(api_key):
 
 
 # ---------------------------------------------------------------------------
-# STEP 4: GENERA IL MARKDOWN CON GLI EMBED
+# STEP 4: GENERA UN FILE MARKDOWN PER OGNI VIDEO (una card per video nella lista)
 # ---------------------------------------------------------------------------
 
-def genera_markdown(video):
-    mesi_it = ["gennaio", "febbraio", "marzo", "aprile", "maggio", "giugno",
-               "luglio", "agosto", "settembre", "ottobre", "novembre", "dicembre"]
-    oggi = datetime.date.today()
-    data_italiana = f"{oggi.day} {mesi_it[oggi.month - 1]} {oggi.year}"
-    data_iso = oggi.isoformat()
+def slugify(testo):
+    testo = testo.lower().strip()
+    testo = re.sub(r"[^a-z0-9]+", "-", testo)
+    return testo.strip("-")[:60]
+
+
+def genera_file_video(v):
+    data_iso = v["data"].strftime("%Y-%m-%dT%H:%M:%S%z")
 
     righe = [
         "---",
-        f'title: "Video del giorno — {data_italiana}"',
+        f'title: "{v["titolo"].replace(chr(34), chr(39))}"',  # sostituisce eventuali " nel titolo
         f"date: {data_iso}",
         "draft: false",
         'tags: ["video", "youtube"]',
         'categories: ["video"]',
+        "cover:",
+        f'  image: "https://img.youtube.com/vi/{v["video_id"]}/hqdefault.jpg"',
+        f'  alt: "{v["titolo"].replace(chr(34), chr(39))}"',
         "---",
         "",
+        f"*Canale: {v['canale']}*",
+        "",
+        f"{{{{< youtube {v['video_id']} >}}}}",
+        "",
     ]
-
-    if not video:
-        righe.append("Nessun nuovo video oggi dai canali monitorati.")
-        return "\n".join(righe)
-
-    for v in video:
-        righe.append(f"### {v['titolo']}")
-        righe.append(f"*Canale: {v['canale']}*")
-        righe.append("")
-        righe.append(f"{{{{< youtube {v['video_id']} >}}}}")
-        righe.append("")
-
     return "\n".join(righe)
 
 
-# ---------------------------------------------------------------------------
-# STEP 5: SALVATAGGIO
-# ---------------------------------------------------------------------------
-
-def salva(contenuto):
+def salva_video(video):
     os.makedirs(OUTPUT_DIR, exist_ok=True)
-    oggi = datetime.date.today().isoformat()
-    percorso = os.path.join(OUTPUT_DIR, f"video-{oggi}.md")
-    with open(percorso, "w", encoding="utf-8") as f:
-        f.write(contenuto)
-    print(f"\nPost video salvato in: {percorso}")
-    return percorso
+    for v in video:
+        data_str = v["data"].strftime("%Y-%m-%d")
+        nome_file = f"video-{data_str}-{v['video_id']}.md"
+        percorso = os.path.join(OUTPUT_DIR, nome_file)
+        # Non sovrascriviamo un file già esistente (evita duplicati se lo script
+        # gira più volte lo stesso giorno)
+        if os.path.exists(percorso):
+            continue
+        with open(percorso, "w", encoding="utf-8") as f:
+            f.write(genera_file_video(v))
+        print(f"  Salvato: {percorso}")
 
 
 # ---------------------------------------------------------------------------
@@ -205,11 +204,10 @@ def main():
     video = raccogli_video(api_key)
 
     if not video:
-        print("\nNessun video nuovo: non pubblico un post vuoto.")
+        print("\nNessun video nuovo: non pubblico nulla.")
         sys.exit(0)
 
-    markdown = genera_markdown(video)
-    salva(markdown)
+    salva_video(video)
 
 
 if __name__ == "__main__":
