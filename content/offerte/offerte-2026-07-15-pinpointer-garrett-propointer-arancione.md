@@ -1,0 +1,16 @@
+---
+title: "Pinpointer Garrett Propointer Arancione"
+date: 2026-07-15
+draft: false
+tags: ["offerte", "prodotti"]
+categories: ["offerte"]
+cover:
+  image: "https://m.media-amazon.com/images/I/61-O7obOO9L._AC_SL1500_.jpg"
+  alt: "Pinpointer Garrett Propointer Arancione"
+---
+
+*Link di affiliazione Amazon: se acquisti tramite questo link, riceviamo una piccola commissione senza costi aggiuntivi per te.*
+
+Garrett Propointer Arancione: indispensabile per individuare con precisione millimetrica ogni tesoro, anche il più piccolo.
+
+[Vedi su Amazon](https://amzn.to/3RF4pw9)
