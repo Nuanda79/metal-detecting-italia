@@ -11,6 +11,6 @@ cover:
 
 *Link di affiliazione Amazon: se acquisti tramite questo link, riceviamo una piccola commissione senza costi aggiuntivi per te.*
 
-Minelab Pro Find 15: il tuo alleato indispensabile per scovare con precisione ogni piccolo tesoro nascosto.
+Minelab Pro-Find 15: indispensabile per individuare con precisione ogni prezioso ritrovamento.
 
 [Vedi su Amazon](https://amzn.to/4w61Ke7)
