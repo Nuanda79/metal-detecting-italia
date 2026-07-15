@@ -1,4 +1,4 @@
-baseURL = 'https://Nuanda79.github.io/metal-detecting-italia/'
+baseURL = 'https://TUOUSERNAME.github.io/metal-detecting-italia/'
 languageCode = 'it-it'
 title = 'Metal Detecting Italia'
 theme = 'PaperMod'
@@ -36,6 +36,10 @@ buildExpired = false
   [[params.socialIcons]]
     name = "youtube"
     url = "https://www.youtube.com/@Nuanda1979"
+
+  [[params.socialIcons]]
+    name = "instagram"
+    url = "https://www.instagram.com/nuanda1979/"
 
 [[menu.main]]
   identifier = "news"
