@@ -122,6 +122,21 @@ def slugify(testo):
     return testo.strip("-")[:60]
 
 
+def ridimensiona_immagine_amazon(url, lato_max=500):
+    """Le immagini Amazon supportano un parametro di dimensione nell'URL stesso
+    (es. ..._AC_SL1500_.jpg). Lo sostituiamo per chiedere direttamente una
+    versione più piccola, senza bisogno di CSS o elaborazione lato nostro."""
+    if not url:
+        return url
+    # Pattern tipico: ..._AC_SL1500_.jpg oppure ..._SX679_.jpg ecc.
+    nuovo_url = re.sub(r"_(SL|SX|SY|AC_SL|AC_SX|AC_SY)\d+_", f"_SL{lato_max}_", url)
+    if nuovo_url == url and "._AC_" not in url:
+        # Nessun parametro di dimensione trovato: proviamo ad aggiungerne uno
+        # prima dell'estensione (funziona per molte URL m.media-amazon.com)
+        nuovo_url = re.sub(r"(\.[a-zA-Z]{3,4})$", f"._SL{lato_max}_\\1", url)
+    return nuovo_url
+
+
 def genera_file_prodotto(p, data_italiana, data_iso, descrizione):
     titolo_pulito = p["nome"].replace('"', "'")
 
@@ -135,7 +150,7 @@ def genera_file_prodotto(p, data_italiana, data_iso, descrizione):
     ]
     if p.get("immagine"):
         righe.append("cover:")
-        righe.append(f'  image: "{p["immagine"]}"')
+        righe.append(f'  image: "{ridimensiona_immagine_amazon(p["immagine"])}"')
         righe.append(f'  alt: "{titolo_pulito}"')
     righe += [
         "---",
@@ -173,7 +188,7 @@ def salva_prodotti(prodotti_oggi):
                 descrizione = ""
 
         slug = slugify(p["nome"])
-        nome_file = f"offerte-{oggi.isoformat()}-{slug}.md"
+        nome_file = f"offerte-{slug}.md"  # niente data nel nome: si aggiorna, non si duplica
         percorso = os.path.join(OUTPUT_DIR, nome_file)
 
         contenuto = genera_file_prodotto(p, data_italiana, data_iso, descrizione)
