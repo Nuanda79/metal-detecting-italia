@@ -1,0 +1,20 @@
+/* Limita la dimensione delle immagini di copertina nella pagina del singolo post
+   (news, video, offerte) - senza questo, foto ad alta risoluzione (es. Amazon)
+   vengono mostrate enormi, mentre le miniature YouTube (già piccole di loro)
+   non ne risentono. */
+.post-single .entry-cover img,
+.single .entry-cover img {
+    max-height: 400px;
+    width: auto;
+    max-width: 100%;
+    object-fit: contain;
+    margin: 0 auto;
+    display: block;
+}
+
+/* Le card nella lista (home, sezioni) restano già ben gestite dal tema,
+   ma rinforziamo comunque un limite coerente per sicurezza */
+.entry-cover img {
+    max-height: 240px;
+    object-fit: cover;
+}
