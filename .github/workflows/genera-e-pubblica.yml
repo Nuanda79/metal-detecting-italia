@@ -1,27 +1,43 @@
-name: Genera contenuti quotidiani
+name: Genera contenuti e pubblica il sito
 
 on:
   schedule:
     # Ogni giorno alle 6:00 UTC (le 8:00 in Italia in estate, le 7:00 in inverno)
     - cron: '0 6 * * *'
   workflow_dispatch: {}  # permette di lanciarlo anche manualmente da GitHub
+  push:
+    branches: ["main"]  # utile anche se pushi manualmente modifiche al sito/tema
 
 permissions:
   contents: write
+  pages: write
+  id-token: write
+
+concurrency:
+  group: "pages"
+  cancel-in-progress: false
 
 jobs:
-  genera:
+  genera-e-pubblica:
     runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    env:
+      HUGO_VERSION: 0.148.2
     steps:
       - name: Checkout del repository
         uses: actions/checkout@v4
+        with:
+          submodules: recursive
+          fetch-depth: 0
 
       - name: Setup Python
         uses: actions/setup-python@v5
         with:
           python-version: '3.12'
 
-      - name: Installa dipendenze
+      - name: Installa dipendenze Python
         run: pip install -r scripts/requirements.txt
 
       - name: Genera news del giorno
@@ -42,7 +58,7 @@ jobs:
         run: python scripts/amazon_offers.py
         continue-on-error: true
 
-      - name: Commit e push dei nuovi contenuti
+      - name: Commit dei nuovi contenuti
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
@@ -53,3 +69,27 @@ jobs:
             git commit -m "Contenuti automatici del $(date +'%Y-%m-%d')"
             git push
           fi
+
+      - name: Install Hugo CLI
+        run: |
+          curl -sL "https://github.com/gohugoio/hugo/releases/download/v${HUGO_VERSION}/hugo_extended_${HUGO_VERSION}_linux-amd64.deb" -o hugo.deb
+          sudo dpkg -i hugo.deb
+
+      - name: Setup Pages
+        id: pages
+        uses: actions/configure-pages@v5
+
+      - name: Build con Hugo
+        run: |
+          hugo \
+            --minify \
+            --baseURL "${{ steps.pages.outputs.base_url }}/"
+
+      - name: Upload artifact
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: ./public
+
+      - name: Deploy su GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4
