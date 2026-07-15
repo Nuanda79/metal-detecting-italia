@@ -1,4 +1,149 @@
-/* File lasciato vuoto intenzionalmente.
-   Le immagini Amazon vengono ora ridimensionate direttamente tramite
-   l'URL (parametro di dimensione), quindi non serve più forzare via CSS
-   - evitiamo così di toccare anche le miniature YouTube nella sezione video. */
+/* =========================================================================
+   IDENTITÀ VISIVA — Metal Detecting Italia
+   Palette ispirata al mondo del metal detecting: terra scavata, bronzo
+   antico, patina ossidata. Tipografia con carattere "inciso" per i titoli.
+   ========================================================================= */
+
+@import url('https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,500;0,9..144,600;0,9..144,700;1,9..144,500&family=Public+Sans:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap');
+
+:root {
+    --radius: 4px;
+
+    /* Modalità chiara: pergamena e inchiostro caldo */
+    --theme: rgb(241, 233, 216);        /* pergamena */
+    --entry: rgb(248, 243, 232);
+    --primary: rgb(42, 36, 28);         /* inchiostro caldo */
+    --secondary: rgb(107, 90, 66);
+    --tertiary: rgb(216, 199, 166);
+    --content: rgb(51, 43, 33);
+    --code-block-bg: rgb(37, 32, 26);
+    --code-bg: rgb(232, 221, 196);
+    --border: rgb(210, 191, 156);
+
+    --brass: #B8862E;
+    --patina: #4F6F60;
+    --rust: #8B4A3B;
+}
+
+:root[data-theme="dark"] {
+    /* Modalità scura: terra scavata al crepuscolo */
+    --theme: rgb(27, 23, 18);           /* terra scura */
+    --entry: rgb(38, 33, 26);
+    --primary: rgb(230, 220, 200);
+    --secondary: rgb(168, 150, 122);
+    --tertiary: rgb(70, 60, 46);
+    --content: rgb(214, 203, 182);
+    --code-block-bg: rgb(20, 17, 13);
+    --code-bg: rgb(46, 40, 31);
+    --border: rgb(64, 54, 41);
+
+    --brass: #D9AE55;
+    --patina: #6E9484;
+    --rust: #B36B57;
+}
+
+/* ---------- Tipografia ---------- */
+
+body {
+    font-family: 'Public Sans', -apple-system, BlinkMacSystemFont, sans-serif;
+}
+
+.post-title, .entry-header h2, h1, h2, h3,
+.list-title, article h2, article h3 {
+    font-family: 'Fraunces', Georgia, serif;
+    font-weight: 600;
+    letter-spacing: -0.01em;
+}
+
+.profile-mode .title, .home-info .title, .home-info h1 {
+    font-family: 'Fraunces', Georgia, serif;
+    font-weight: 700;
+    font-style: italic;
+}
+
+.post-meta, .breadcrumbs, time,
+.post-tags, .post-tags a,
+.tags-container, .archive-year, .archive-month {
+    font-family: 'JetBrains Mono', monospace;
+    letter-spacing: -0.02em;
+}
+
+.post-tags a {
+    text-transform: lowercase;
+    font-size: 0.8em;
+}
+
+/* ---------- Elemento distintivo: la "traccia" dorata ---------- */
+/* Come lo sweep di un metal detector: una linea che si rivela sotto
+   i titoli cliccabili al passaggio del mouse. */
+
+.entry-header h2, .post-title {
+    position: relative;
+    display: inline;
+    background-image: linear-gradient(var(--brass), var(--brass));
+    background-repeat: no-repeat;
+    background-position: left bottom;
+    background-size: 0% 2px;
+    transition: background-size 0.35s ease;
+}
+
+.entry-header:hover h2 {
+    background-size: 100% 2px;
+}
+
+/* ---------- Colore d'accento su elementi interattivi ---------- */
+
+.home-info .title, .home-info .title a {
+    color: var(--brass);
+}
+
+.post-tags a {
+    border: 1px solid var(--brass);
+    color: var(--brass);
+    border-radius: var(--radius);
+    padding: 2px 8px;
+    transition: background-color 0.2s ease, color 0.2s ease;
+}
+
+.post-tags a:hover {
+    background-color: var(--brass);
+    color: var(--theme);
+}
+
+.top-link {
+    background: var(--brass) !important;
+    color: var(--theme) !important;
+}
+
+button, .pagination a {
+    border-color: var(--tertiary);
+}
+
+a:hover {
+    color: var(--brass);
+}
+
+/* Firma della patina: un piccolo bordo sinistro color patina sulle
+   citazioni/blockquote, a richiamare l'ossidazione del bronzo */
+blockquote {
+    border-left: 3px solid var(--patina);
+    padding-left: 1em;
+    font-style: italic;
+}
+
+/* ---------- Immagini di copertina ---------- */
+
+.entry-cover img, .post-single .entry-cover img {
+    border-radius: var(--radius);
+    border: 1px solid var(--border);
+}
+
+/* ---------- Header ---------- */
+
+.nav {
+    border-bottom: 1px solid var(--border);
+}
+
+#menu a.active {
+    color: var(--brass);
+}
