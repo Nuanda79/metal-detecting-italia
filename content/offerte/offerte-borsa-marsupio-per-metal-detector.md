@@ -11,6 +11,6 @@ cover:
 
 *Link di affiliazione Amazon: se acquisti tramite questo link, riceviamo una piccola commissione senza costi aggiuntivi per te.*
 
-Custodisci comodamente i tuoi preziosi ritrovamenti: il marsupio essenziale per ogni appassionato di metal detecting.
+Il tuo marsupio essenziale per custodire attrezzi e preziosi ritrovamenti in ogni emozionante caccia al tesoro.
 
 [Vedi su Amazon](https://amzn.to/4aSJ60A)
