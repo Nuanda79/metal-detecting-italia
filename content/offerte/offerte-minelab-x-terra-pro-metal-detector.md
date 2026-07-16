@@ -11,6 +11,4 @@ cover:
 
 *Link di affiliazione Amazon: se acquisti tramite questo link, riceviamo una piccola commissione senza costi aggiuntivi per te.*
 
-Il Minelab X-Terra PRO ridefinisce la tua ricerca, rivelando tesori nascosti con potenza e precisione.
-
 [Vedi su Amazon](https://amzn.to/4pj943g)
