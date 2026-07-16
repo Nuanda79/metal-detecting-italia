@@ -155,8 +155,51 @@ blockquote {
     border-bottom: 1px solid var(--border);
 }
 
-#menu a.active {
-    color: var(--brass);
+/* ---------- Titolo header: più carattere ---------- */
+
+.logo a {
+    font-family: 'Fraunces', Georgia, serif;
+    font-style: italic;
+    font-weight: 700;
+    font-size: 30px;
+    letter-spacing: -0.01em;
+    color: var(--brass) !important;
+}
+
+/* ---------- Sfondo: griglia da rilievo + vignettatura ---------- */
+/* Richiama la griglia di perlustrazione usata sul campo dai cercatori,
+   sottilissima per non disturbare la lettura. */
+
+body {
+    position: relative;
+}
+
+body::before {
+    content: "";
+    position: fixed;
+    inset: 0;
+    z-index: -1;
+    pointer-events: none;
+    background-color: var(--theme);
+    background-image:
+        linear-gradient(var(--secondary) 1px, transparent 1px),
+        linear-gradient(90deg, var(--secondary) 1px, transparent 1px),
+        radial-gradient(ellipse at center, transparent 0%, transparent 55%, rgba(0,0,0,0.06) 100%);
+    background-size: 42px 42px, 42px 42px, 100% 100%;
+    opacity: 0.04;
+}
+
+:root[data-theme="dark"] body::before {
+    background-image:
+        linear-gradient(var(--secondary) 1px, transparent 1px),
+        linear-gradient(90deg, var(--secondary) 1px, transparent 1px),
+        radial-gradient(ellipse at center, transparent 0%, transparent 50%, rgba(0,0,0,0.35) 100%);
+    opacity: 0.06;
+}
+
+.main {
+    position: relative;
+    z-index: 1;
 }
 
 .header-nav {
