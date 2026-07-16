@@ -83,8 +83,14 @@ body {
     content: "◆";
     color: var(--brass);
     font-size: 0.6em;
-    margin-right: 10px;
     vertical-align: middle;
+    flex-shrink: 0;
+}
+
+.entry-hint-parent {
+    justify-content: flex-start !important;
+    gap: 10px;
+    align-items: center;
 }
 
 .entry-header h2, .post-title {
@@ -150,5 +156,27 @@ blockquote {
 }
 
 #menu a.active {
+    color: var(--brass);
+}
+
+.header-nav {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+}
+
+.header-social .social-icons {
+    display: flex;
+    gap: 12px;
+    margin-left: 16px;
+}
+
+.header-social .social-icons a {
+    color: var(--secondary);
+    transition: color 0.2s ease;
+}
+
+.header-social .social-icons a:hover {
     color: var(--brass);
 }
