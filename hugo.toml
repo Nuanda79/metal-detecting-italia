@@ -48,6 +48,12 @@ buildExpired = false
   weight = 10
 
 [[menu.main]]
+  identifier = "guide"
+  name = "Guide"
+  url = "/guide/"
+  weight = 15
+
+[[menu.main]]
   identifier = "video"
   name = "Video"
   url = "/video/"

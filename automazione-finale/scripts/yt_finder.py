@@ -34,7 +34,7 @@ CHANNELS = [
 ]
 
 # Quante ore indietro guardare
-FINESTRA_ORE = 48
+FINESTRA_ORE = 24
 
 # Percorso di output: la cartella content/video/ del sito Hugo
 OUTPUT_DIR = "content/video"
