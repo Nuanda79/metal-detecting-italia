@@ -18,6 +18,9 @@ buildExpired = false
   env = 'production'
   description = "Rassegna quotidiana di news, video e offerte per gli appassionati di metal detecting in Italia."
   author = "Metal Detecting Italia"
+
+  [params.analytics.google]
+    SiteVerificationTag = "X-BDorqwPpXAKvbETfU2I2XbBuZaBeSoTlByYPxlt4s"
   defaultTheme = "auto"
   ShowShareButtons = true
   ShowReadingTime = true
