@@ -131,6 +131,7 @@ def genera_file_prodotto(p, data_italiana, data_iso, descrizione):
         'tags: ["offerte", "prodotti"]',
         'categories: ["offerte"]',
         f'gruppo: "{p.get("categoria", "Altri accessori utili")}"',
+        f'amazon_link: "{p["link"]}"',
     ]
     if p.get("immagine"):
         righe.append("cover:")

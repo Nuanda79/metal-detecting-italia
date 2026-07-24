@@ -27,7 +27,7 @@
   <h2 class="offerte-categoria-titolo">{{ $cat }}</h2>
   <div class="offerte-griglia">
     {{- range $pagine_cat.ByTitle }}
-    <a class="offerta-card" href="{{ .Permalink }}">
+    <a class="offerta-card" href="{{ .Params.amazon_link }}" target="_blank" rel="nofollow sponsored noopener">
       {{- with .Params.cover.image }}
       <div class="offerta-card-img">
         <img src="{{ . }}" alt="{{ $.Title }}" loading="lazy">
@@ -48,7 +48,7 @@
   <h2 class="offerte-categoria-titolo">Altre offerte</h2>
   <div class="offerte-griglia">
     {{- range $senza_categoria.ByTitle }}
-    <a class="offerta-card" href="{{ .Permalink }}">
+    <a class="offerta-card" href="{{ .Params.amazon_link }}" target="_blank" rel="nofollow sponsored noopener">
       {{- with .Params.cover.image }}
       <div class="offerta-card-img">
         <img src="{{ . }}" alt="{{ $.Title }}" loading="lazy">

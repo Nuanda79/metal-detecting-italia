@@ -1,20 +1,20 @@
-# Formato: Nome;Link;Descrizione(opz.);Immagine(opz.);Categoria
-# Categorie valide: Metal Detector, Pinpointer, Accessori da scavo, Altri accessori utili
-
-Nokta FINDX PRO Metal Detector;https://amzn.to/3SQZNn7;;;Metal Detector
-Minelab X-Terra PRO Metal Detector;https://amzn.to/4pj943g;;;Metal Detector
-Garrett ACE 300i Metal Detector;https://amzn.to/3T5ntEc;;;Metal Detector
-Quest X1 IDmaxX - Kit completo;https://amzn.to/4vtKWwc;;;Metal Detector
-Fisher F22 - Rilevatore di metalli resistente alle intemperie;https://amzn.to/3Tgcmbx;con bobina di ricerca sommergibile, nero;;Metal Detector
-
-XP Metal Detectors MI-6 pinpointer;https://amzn.to/3Tlghnv;con connettivita wireless ai metal detector Deus II (Deus e ORX);;Pinpointer
-Pinpointer Garrett Propointer Arancione;https://amzn.to/3RF4pw9;;;Pinpointer
-Rivelatore di metalli Minelab Pro Find 15;https://amzn.to/4w61Ke7;;;Pinpointer
-
-Pala da scavo Empotec PA-1;https://link.amazon/B01HlcPRa;;;Accessori da scavo
-Coltello da scavo Xforst X-GM300;https://link.amazon/B09ZEH839;;;Accessori da scavo
-Pala Black+Decker;https://link.amazon/B0i9m7q09;;;Accessori da scavo
-Coltello da scavo Empotec C2;https://link.amazon/B0d9rBOS9;;;Accessori da scavo
-Pala Xforst X-SZ1;https://link.amazon/B0fDfyOJa;;;Accessori da scavo
-
-XP Metal Detectors Backpack 240;https://amzn.to/44tSX9G;zaino leggero e robusto progettato per i metal detector, ergonomico con piu di 10 tasche e scomparti dedicati;;Altri accessori utili
+# Formato: Nome;Link;Descrizione(opz.);Immagine(opz.);Categoria;
+# Categorie valide: Metal Detector; Pinpointer; Accessori da scavo; Altri accessori utili;;
+;;;;;
+Nokta FINDX PRO Metal Detector;https://amzn.to/3SQZNn7;;https://m.media-amazon.com/images/I/81eVNl1NeSL._AC_SL1500_.jpg;Metal Detector;
+Minelab X-Terra PRO Metal Detector;https://amzn.to/4pj943g;;https://m.media-amazon.com/images/I/61yd02XKmoL._AC_SL1500_.jpg;Metal Detector;
+Garrett ACE 300i Metal Detector;https://amzn.to/3T5ntEc;;https://m.media-amazon.com/images/I/51Xdo6MXrKL._AC_SL1280_.jpg;Metal Detector;
+Quest X1 IDmaxX - Kit completo;https://amzn.to/4vtKWwc;;https://m.media-amazon.com/images/I/71fsZp-76yL._AC_SL1500_.jpg;Metal Detector;
+Fisher F22 - Rilevatore di metalli resistente alle intemperie;https://amzn.to/3Tgcmbx;;https://m.media-amazon.com/images/I/71DURY1qW0L._AC_SL1500_.jpg;;Metal Detector
+;;;;;
+XP Metal Detectors MI-6 pinpointer;https://amzn.to/3Tlghnv;con connettivita wireless ai metal detector Deus II (Deus e ORX);https://m.media-amazon.com/images/I/61ExjqKScvL._AC_SL1500_.jpg;Pinpointer;
+Pinpointer Garrett Propointer Arancione;https://amzn.to/3RF4pw9;;https://m.media-amazon.com/images/I/61-O7obOO9L._AC_SL1500_.jpg;Pinpointer;
+Rivelatore di metalli Minelab Pro Find 15;https://amzn.to/4w61Ke7;;https://m.media-amazon.com/images/I/51nZGdXkfeL._AC_SL1500_.jpg;Pinpointer;
+;;;;;
+Pala da scavo Empotec PA-1;https://link.amazon/B01HlcPRa;;https://m.media-amazon.com/images/I/51IdLwCj71S._AC_SL1500_.jpg;Accessori da scavo;
+Coltello da scavo Xforst X-GM300;https://link.amazon/B09ZEH839;;https://m.media-amazon.com/images/I/61XJGTC2NmL._AC_SL1500_.jpg;Accessori da scavo;
+Pala Black+Decker;https://link.amazon/B0i9m7q09;;https://m.media-amazon.com/images/I/51cKtiy+QYL._AC_SL1500_.jpg;Accessori da scavo;
+Coltello da scavo Empotec C2;https://link.amazon/B0d9rBOS9;;https://m.media-amazon.com/images/I/71Ha4EEo+6L._AC_SL1500_.jpg;Accessori da scavo;
+Pala Xforst X-SZ1;https://link.amazon/B0fDfyOJa;;https://m.media-amazon.com/images/I/51o63rPXr4L._AC_SL1500_.jpg;Accessori da scavo;
+;;;;;
+XP Metal Detectors Backpack 240;https://amzn.to/44tSX9G;zaino leggero e robusto progettato per i metal detector;https://m.media-amazon.com/images/I/81gNFJS3SfL._AC_SL1500_.jpg;;Altri accessori utili
