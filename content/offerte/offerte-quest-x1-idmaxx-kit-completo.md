@@ -11,6 +11,6 @@ cover:
 
 *Link di affiliazione Amazon: se acquisti tramite questo link, riceviamo una piccola commissione senza costi aggiuntivi per te.*
 
-Il Kit completo Quest X1 IDmaxX ti apre le porte a scoperte precise e al puro brivido del metal detecting.
+Il Kit completo Quest X1 IDmaxX: massima identificazione, massime emozioni per le tue prossime scoperte.
 
 [Vedi su Amazon](https://amzn.to/4vtKWwc)
