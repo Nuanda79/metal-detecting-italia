@@ -28,7 +28,6 @@ import datetime
 # ---------------------------------------------------------------------------
 
 PRODOTTI_FILE = "scripts/prodotti.csv"
-N_PRODOTTI_AL_GIORNO = 3
 OUTPUT_DIR = "content/offerte"
 
 
@@ -64,34 +63,18 @@ def leggi_prodotti():
         link = riga[1].strip() if len(riga) > 1 else ""
         descrizione = riga[2].strip() if len(riga) > 2 else ""
         immagine = riga[3].strip() if len(riga) > 3 else ""
+        categoria = riga[4].strip() if len(riga) > 4 else "Altri accessori utili"
         if nome and link:
-            prodotti.append({"nome": nome, "link": link, "descrizione": descrizione, "immagine": immagine})
+            prodotti.append({
+                "nome": nome, "link": link, "descrizione": descrizione,
+                "immagine": immagine, "categoria": categoria,
+            })
 
     if not prodotti:
         print("ERRORE: nessun prodotto valido trovato nel file.")
         sys.exit(1)
 
     return prodotti
-
-
-# ---------------------------------------------------------------------------
-# STEP 2: SCEGLI I PRODOTTI DI OGGI (A ROTAZIONE, NON A CASO)
-# ---------------------------------------------------------------------------
-
-def scegli_prodotti_oggi(prodotti):
-    n = len(prodotti)
-    k = min(N_PRODOTTI_AL_GIORNO, n)
-
-    # Usiamo il numero di giorni trascorsi (data ordinale) per calcolare un
-    # indice di partenza stabile: cambia ogni giorno, e in un ciclo completo
-    # (n // k giorni circa) tutti i prodotti vengono proposti almeno una volta.
-    oggi_ordinale = datetime.date.today().toordinal()
-    indice_partenza = (oggi_ordinale * k) % n
-
-    scelti = []
-    for i in range(k):
-        scelti.append(prodotti[(indice_partenza + i) % n])
-    return scelti
 
 
 # ---------------------------------------------------------------------------
@@ -147,6 +130,7 @@ def genera_file_prodotto(p, data_italiana, data_iso, descrizione):
         "draft: false",
         'tags: ["offerte", "prodotti"]',
         'categories: ["offerte"]',
+        f'gruppo: "{p.get("categoria", "Altri accessori utili")}"',
     ]
     if p.get("immagine"):
         righe.append("cover:")
@@ -177,7 +161,15 @@ def salva_prodotti(prodotti_oggi):
 
     os.makedirs(OUTPUT_DIR, exist_ok=True)
 
+    nuovi = 0
     for p in prodotti_oggi:
+        slug = slugify(p["nome"])
+        nome_file = f"offerte-{slug}.md"
+        percorso = os.path.join(OUTPUT_DIR, nome_file)
+
+        if os.path.exists(percorso):
+            continue  # già pubblicato in passato, non lo tocchiamo (negozio statico)
+
         descrizione = p["descrizione"]
         if not descrizione:
             print(f"  Genero descrizione per: {p['nome']}...")
@@ -187,14 +179,14 @@ def salva_prodotti(prodotti_oggi):
                 print(f"  Attenzione: impossibile generare descrizione ({e})")
                 descrizione = ""
 
-        slug = slugify(p["nome"])
-        nome_file = f"offerte-{slug}.md"  # niente data nel nome: si aggiorna, non si duplica
-        percorso = os.path.join(OUTPUT_DIR, nome_file)
-
         contenuto = genera_file_prodotto(p, data_italiana, data_iso, descrizione)
         with open(percorso, "w", encoding="utf-8") as f:
             f.write(contenuto)
-        print(f"  Salvato: {percorso}")
+        print(f"  Nuovo prodotto pubblicato: {percorso}")
+        nuovi += 1
+
+    if nuovi == 0:
+        print("  Nessun prodotto nuovo da pubblicare (catalogo già aggiornato).")
 
 
 # ---------------------------------------------------------------------------
@@ -203,12 +195,9 @@ def salva_prodotti(prodotti_oggi):
 
 def main():
     prodotti = leggi_prodotti()
-    print(f"Prodotti in libreria: {len(prodotti)}")
+    print(f"Prodotti in libreria: {len(prodotti)}\n")
 
-    scelti = scegli_prodotti_oggi(prodotti)
-    print(f"Prodotti scelti per oggi: {', '.join(p['nome'] for p in scelti)}\n")
-
-    salva_prodotti(scelti)
+    salva_prodotti(prodotti)
 
 
 if __name__ == "__main__":

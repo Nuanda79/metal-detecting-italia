@@ -1,0 +1,64 @@
+{{- define "main" }}
+
+<header class="page-header">
+  {{- partial "breadcrumbs.html" . }}
+  <h1>{{ .Title }}</h1>
+  {{- if .Description }}
+  <div class="post-description">{{ .Description | markdownify }}</div>
+  {{- end }}
+</header>
+
+{{- if .Content }}
+<div class="post-content md-content">
+  {{ .Content }}
+</div>
+{{- end }}
+
+{{- $categorie := slice "Metal Detector" "Pinpointer" "Accessori da scavo" "Altri accessori utili" }}
+{{- $tutte_le_pagine := .Pages }}
+{{- $categorizzate := slice }}
+
+{{- range $categorie }}
+{{- $cat := . }}
+{{- $pagine_cat := where $tutte_le_pagine "Params.gruppo" $cat }}
+{{- $categorizzate = $categorizzate | append $pagine_cat }}
+{{- if gt (len $pagine_cat) 0 }}
+<section class="offerte-categoria">
+  <h2 class="offerte-categoria-titolo">{{ $cat }}</h2>
+  <div class="offerte-griglia">
+    {{- range $pagine_cat.ByTitle }}
+    <a class="offerta-card" href="{{ .Permalink }}">
+      {{- with .Params.cover.image }}
+      <div class="offerta-card-img">
+        <img src="{{ . }}" alt="{{ $.Title }}" loading="lazy">
+      </div>
+      {{- end }}
+      <div class="offerta-card-titolo">{{ .Title }}</div>
+    </a>
+    {{- end }}
+  </div>
+</section>
+{{- end }}
+{{- end }}
+
+{{- /* Eventuali prodotti senza categoria riconosciuta finiscono qui */ -}}
+{{- $senza_categoria := where $tutte_le_pagine "Params.gruppo" "not in" $categorie }}
+{{- if gt (len $senza_categoria) 0 }}
+<section class="offerte-categoria">
+  <h2 class="offerte-categoria-titolo">Altre offerte</h2>
+  <div class="offerte-griglia">
+    {{- range $senza_categoria.ByTitle }}
+    <a class="offerta-card" href="{{ .Permalink }}">
+      {{- with .Params.cover.image }}
+      <div class="offerta-card-img">
+        <img src="{{ . }}" alt="{{ $.Title }}" loading="lazy">
+      </div>
+      {{- end }}
+      <div class="offerta-card-titolo">{{ .Title }}</div>
+    </a>
+    {{- end }}
+  </div>
+</section>
+{{- end }}
+
+{{- end }}{{- /* end main */ -}}
