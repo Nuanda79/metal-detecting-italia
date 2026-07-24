@@ -34,10 +34,10 @@ CHANNELS = [
 ]
 
 # Quante ore indietro guardare
-FINESTRA_ORE = 24
+FINESTRA_ORE = 48
 
 # Percorso di output: la cartella content/video/ del sito Hugo
-OUTPUT_DIR = "content/video"
+OUTPUT_DIR = "../metal-detecting-italia/content/video"
 
 API_BASE = "https://www.googleapis.com/youtube/v3"
 
@@ -165,6 +165,7 @@ def genera_file_video(v):
         "cover:",
         f'  image: "https://img.youtube.com/vi/{v["video_id"]}/hqdefault.jpg"',
         f'  alt: "{v["titolo"].replace(chr(34), chr(39))}"',
+        "  hiddenInSingle: true",
         "---",
         "",
         f"*Canale: {v['canale']}*",
