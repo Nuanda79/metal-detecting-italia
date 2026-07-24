@@ -11,6 +11,6 @@ cover:
 
 *Link di affiliazione Amazon: se acquisti tramite questo link, riceviamo una piccola commissione senza costi aggiuntivi per te.*
 
-Fisher F22: l'alleato perfetto per rivelare tesori e storie nascoste sotto i tuoi piedi.
+Fisher F22: il tuo compagno ideale per emozionanti scoperte sotterranee.
 
 [Vedi su Amazon](https://amzn.to/3Tgcmbx)
