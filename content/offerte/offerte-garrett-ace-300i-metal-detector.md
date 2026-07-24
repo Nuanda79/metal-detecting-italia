@@ -11,6 +11,6 @@ cover:
 
 *Link di affiliazione Amazon: se acquisti tramite questo link, riceviamo una piccola commissione senza costi aggiuntivi per te.*
 
-Il Garrett ACE 300i: la tua chiave per sbloccare tesori, un segnale alla volta.
+Garrett ACE 300i: la tua chiave per svelare tesori nascosti e la storia sotto i tuoi piedi.
 
 [Vedi su Amazon](https://amzn.to/3T5ntEc)
