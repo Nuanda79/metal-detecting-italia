@@ -7,6 +7,7 @@ categories: ["video"]
 cover:
   image: "https://img.youtube.com/vi/UZz_FBWJDYw/hqdefault.jpg"
   alt: "🔥Il ritrovamento che non ti aspetti 🔥 MAGNETAR9000 Legend2 🔍 #legend2 #magnetar #nokta #rrshots1"
+  hiddenInSingle: true
 ---
 
 *Canale: RRS MetalDetector Fede&Anto*

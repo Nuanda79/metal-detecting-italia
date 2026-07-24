@@ -7,6 +7,7 @@ categories: ["video"]
 cover:
   image: "https://img.youtube.com/vi/nlmWrTU7rIA/hqdefault.jpg"
   alt: "Le difficoltà della quinta armata americana in Italia #ww2 #storia #metaldetector"
+  hiddenInSingle: true
 ---
 
 *Canale: Daniel Facose*

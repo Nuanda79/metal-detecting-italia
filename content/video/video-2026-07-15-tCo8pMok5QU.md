@@ -7,6 +7,7 @@ categories: ["video"]
 cover:
   image: "https://img.youtube.com/vi/tCo8pMok5QU/hqdefault.jpg"
   alt: "First Hole Treasure! You know it's going to be a Good Day! #silver #metaldetecting #treasure"
+  hiddenInSingle: true
 ---
 
 *Canale: The Hoover Boys*

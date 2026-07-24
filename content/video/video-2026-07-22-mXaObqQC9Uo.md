@@ -7,6 +7,7 @@ categories: ["video"]
 cover:
   image: "https://img.youtube.com/vi/mXaObqQC9Uo/hqdefault.jpg"
   alt: "La MANUALISTICA per il collezionismo e studio militare WW1 e WW2"
+  hiddenInSingle: true
 ---
 
 *Canale: Daniel Facose*

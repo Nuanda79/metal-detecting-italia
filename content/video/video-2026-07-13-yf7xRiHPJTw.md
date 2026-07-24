@@ -7,6 +7,7 @@ categories: ["video"]
 cover:
   image: "https://img.youtube.com/vi/yf7xRiHPJTw/hqdefault.jpg"
   alt: "Nokta Magnetar 9000 🔴Impostazioni Noise Cancel per una Ricerca Migliore"
+  hiddenInSingle: true
 ---
 
 *Canale: DetectorShop Italia*

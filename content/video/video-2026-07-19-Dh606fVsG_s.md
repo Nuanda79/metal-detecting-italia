@@ -7,6 +7,7 @@ categories: ["video"]
 cover:
   image: "https://img.youtube.com/vi/Dh606fVsG_s/hqdefault.jpg"
   alt: "AFFARI al MERCATINO delle PULCI!  [#153]"
+  hiddenInSingle: true
 ---
 
 *Canale: Daniel Facose*

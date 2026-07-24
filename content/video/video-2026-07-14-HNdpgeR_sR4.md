@@ -7,6 +7,7 @@ categories: ["video"]
 cover:
   image: "https://img.youtube.com/vi/HNdpgeR_sR4/hqdefault.jpg"
   alt: "🌿 Dopo una mattina di scoperte..."
+  hiddenInSingle: true
 ---
 
 *Canale: DetectorShop Italia*

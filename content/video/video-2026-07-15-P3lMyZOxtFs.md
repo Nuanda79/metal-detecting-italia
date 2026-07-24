@@ -7,6 +7,7 @@ categories: ["video"]
 cover:
   image: "https://img.youtube.com/vi/P3lMyZOxtFs/hqdefault.jpg"
   alt: "Batteria Impermeabile per Magnetar 9000 🔴"
+  hiddenInSingle: true
 ---
 
 *Canale: DetectorShop Italia*

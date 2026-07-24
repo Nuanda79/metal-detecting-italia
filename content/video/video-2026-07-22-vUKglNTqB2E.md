@@ -7,6 +7,7 @@ categories: ["video"]
 cover:
   image: "https://img.youtube.com/vi/vUKglNTqB2E/hqdefault.jpg"
   alt: "La fregistica degli elmetti americani della seconda guerra #ww2 #storia #metaldetector"
+  hiddenInSingle: true
 ---
 
 *Canale: Daniel Facose*

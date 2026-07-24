@@ -7,6 +7,7 @@ categories: ["video"]
 cover:
   image: "https://img.youtube.com/vi/or7nx_3kAt4/hqdefault.jpg"
   alt: "XP ICON: quale bundle fa per te?  #xpmetaldetectors  #metaldetecting #detectorcentercervia"
+  hiddenInSingle: true
 ---
 
 *Canale: Detector Center*

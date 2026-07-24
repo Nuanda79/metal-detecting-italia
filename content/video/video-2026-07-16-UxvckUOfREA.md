@@ -7,6 +7,7 @@ categories: ["video"]
 cover:
   image: "https://img.youtube.com/vi/UxvckUOfREA/hqdefault.jpg"
   alt: "🥤 Il segreto per scavare MENO lattine! (Parte 5)"
+  hiddenInSingle: true
 ---
 
 *Canale: DetectorShop Italia*

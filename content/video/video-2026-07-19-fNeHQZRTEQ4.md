@@ -7,6 +7,7 @@ categories: ["video"]
 cover:
   image: "https://img.youtube.com/vi/fNeHQZRTEQ4/hqdefault.jpg"
   alt: "I FOUND 2 of my Favorite Relics Metal Detecting this OLD School! #treasurehunting #metaldetecting"
+  hiddenInSingle: true
 ---
 
 *Canale: The Hoover Boys*

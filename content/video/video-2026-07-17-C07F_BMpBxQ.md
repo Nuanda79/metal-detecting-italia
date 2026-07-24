@@ -7,6 +7,7 @@ categories: ["video"]
 cover:
   image: "https://img.youtube.com/vi/C07F_BMpBxQ/hqdefault.jpg"
   alt: "La truffa dell’oro nel dopo-guerra #ww2 #storia #metaldetector"
+  hiddenInSingle: true
 ---
 
 *Canale: Daniel Facose*

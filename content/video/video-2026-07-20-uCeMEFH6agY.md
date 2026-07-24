@@ -7,6 +7,7 @@ categories: ["video"]
 cover:
   image: "https://img.youtube.com/vi/uCeMEFH6agY/hqdefault.jpg"
   alt: "La no. 77 HandGrenade #ww2 #storia #metaldetector"
+  hiddenInSingle: true
 ---
 
 *Canale: Daniel Facose*

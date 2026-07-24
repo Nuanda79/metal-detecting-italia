@@ -7,6 +7,7 @@ categories: ["video"]
 cover:
   image: "https://img.youtube.com/vi/Eo0tPlT7eaM/hqdefault.jpg"
   alt: "Amazing! It sounded like a beer can 'Dig It All!' #metaldetecting #treasure #1700s #colonialhistory"
+  hiddenInSingle: true
 ---
 
 *Canale: The Hoover Boys*

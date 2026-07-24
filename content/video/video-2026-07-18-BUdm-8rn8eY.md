@@ -7,6 +7,7 @@ categories: ["video"]
 cover:
   image: "https://img.youtube.com/vi/BUdm-8rn8eY/hqdefault.jpg"
   alt: "METAL DETECTOR RRS Fede&Anto sta trasmettendo dal vivo."
+  hiddenInSingle: true
 ---
 
 *Canale: RRS MetalDetector Fede&Anto*

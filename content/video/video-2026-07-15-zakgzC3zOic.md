@@ -7,6 +7,7 @@ categories: ["video"]
 cover:
   image: "https://img.youtube.com/vi/zakgzC3zOic/hqdefault.jpg"
   alt: "DO NOT MAKE THIS STUPID MISTAKE WHILE TREASURE HUNTING!!"
+  hiddenInSingle: true
 ---
 
 *Canale: The Hoover Boys*

@@ -7,6 +7,7 @@ categories: ["video"]
 cover:
   image: "https://img.youtube.com/vi/c3pQ2n_rtdM/hqdefault.jpg"
   alt: "🤔 Un oggetto misterioso... e sorprendentemente pesante."
+  hiddenInSingle: true
 ---
 
 *Canale: DetectorShop Italia*

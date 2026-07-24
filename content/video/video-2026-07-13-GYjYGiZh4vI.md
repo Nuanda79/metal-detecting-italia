@@ -7,6 +7,7 @@ categories: ["video"]
 cover:
   image: "https://img.youtube.com/vi/GYjYGiZh4vI/hqdefault.jpg"
   alt: "XP ICON X: molto più di un entry level #xpmetaldetectors #ICONX #metaldetecting"
+  hiddenInSingle: true
 ---
 
 *Canale: Detector Center*

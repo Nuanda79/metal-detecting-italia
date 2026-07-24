@@ -7,6 +7,7 @@ categories: ["video"]
 cover:
   image: "https://img.youtube.com/vi/oahkykDoGw0/hqdefault.jpg"
   alt: "Live Dig! BIG Silver Coin FOUND Metal Detecting!! #silver #coin #metaldetecting #coincollecting"
+  hiddenInSingle: true
 ---
 
 *Canale: The Hoover Boys*

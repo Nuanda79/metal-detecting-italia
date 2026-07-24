@@ -7,6 +7,7 @@ categories: ["video"]
 cover:
   image: "https://img.youtube.com/vi/QnRBgbzSQ3g/hqdefault.jpg"
   alt: "Ricerca Oro con il migliore Metal Detector del 2026 🔴"
+  hiddenInSingle: true
 ---
 
 *Canale: DetectorShop Italia*

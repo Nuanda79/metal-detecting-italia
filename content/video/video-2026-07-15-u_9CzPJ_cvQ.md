@@ -7,6 +7,7 @@ categories: ["video"]
 cover:
   image: "https://img.youtube.com/vi/u_9CzPJ_cvQ/hqdefault.jpg"
   alt: "Non c è bisogno di fingere siamo cercatori"
+  hiddenInSingle: true
 ---
 
 *Canale: RRS MetalDetector Fede&Anto*

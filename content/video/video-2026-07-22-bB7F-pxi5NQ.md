@@ -7,6 +7,7 @@ categories: ["video"]
 cover:
   image: "https://img.youtube.com/vi/bB7F-pxi5NQ/hqdefault.jpg"
   alt: "Le NUOVE LD35 e LD22 sono una SVOLTA per il Legend 2?"
+  hiddenInSingle: true
 ---
 
 *Canale: RRS MetalDetector Fede&Anto*

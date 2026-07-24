@@ -7,6 +7,7 @@ categories: ["video"]
 cover:
   image: "https://img.youtube.com/vi/N-z33zWmpLI/hqdefault.jpg"
   alt: "Daniel Facose sta trasmettendo dal vivo."
+  hiddenInSingle: true
 ---
 
 *Canale: Daniel Facose*

@@ -7,6 +7,7 @@ categories: ["video"]
 cover:
   image: "https://img.youtube.com/vi/jYJ6blXdicQ/hqdefault.jpg"
   alt: "Nuovi piccoli acquisti da mercatino #ww1 #ww2 #fleamarket"
+  hiddenInSingle: true
 ---
 
 *Canale: Daniel Facose*

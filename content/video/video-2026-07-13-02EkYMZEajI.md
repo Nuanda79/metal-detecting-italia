@@ -7,6 +7,7 @@ categories: ["video"]
 cover:
   image: "https://img.youtube.com/vi/02EkYMZEajI/hqdefault.jpg"
   alt: "Come distingure un elmetto M1 americano bellico da uno post-bellico #ww2 #storia #metaldetector"
+  hiddenInSingle: true
 ---
 
 *Canale: Daniel Facose*

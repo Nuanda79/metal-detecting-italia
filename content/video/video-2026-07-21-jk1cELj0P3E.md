@@ -7,6 +7,7 @@ categories: ["video"]
 cover:
   image: "https://img.youtube.com/vi/jk1cELj0P3E/hqdefault.jpg"
   alt: "Sorpresa Sottoterra ⭐ Scopriamo Target Nascosti con il Metal Detector #metaldetecting #lineagotica"
+  hiddenInSingle: true
 ---
 
 *Canale: DetectorShop Italia*

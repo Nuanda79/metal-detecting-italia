@@ -7,6 +7,7 @@ categories: ["video"]
 cover:
   image: "https://img.youtube.com/vi/UomG2CfIHYY/hqdefault.jpg"
   alt: "Most People Don't Know this Coin Existed! #metaldetecting #coin #coincollecting #treasure #usa"
+  hiddenInSingle: true
 ---
 
 *Canale: The Hoover Boys*

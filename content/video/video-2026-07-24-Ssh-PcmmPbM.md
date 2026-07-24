@@ -7,6 +7,7 @@ categories: ["video"]
 cover:
   image: "https://img.youtube.com/vi/Ssh-PcmmPbM/hqdefault.jpg"
   alt: "Falsi Segnali: 🔴 5 consigli prima di arrabbiarti con il Metal Detector!"
+  hiddenInSingle: true
 ---
 
 *Canale: DetectorShop Italia*

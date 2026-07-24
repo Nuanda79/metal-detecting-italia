@@ -7,6 +7,7 @@ categories: ["video"]
 cover:
   image: "https://img.youtube.com/vi/Ed6Ve42RFIU/hqdefault.jpg"
   alt: "Love Finding Random BIG OLD Coins Metal Detecting! #coin #coincollecting #metaldetecting #treasure"
+  hiddenInSingle: true
 ---
 
 *Canale: The Hoover Boys*

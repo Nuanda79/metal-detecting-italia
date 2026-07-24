@@ -7,6 +7,7 @@ categories: ["video"]
 cover:
   image: "https://img.youtube.com/vi/YGsNdWc6c8k/hqdefault.jpg"
   alt: "4 Sacchetti di Sabbia Nera... Il Legend 2 si Ferma, il Magnetar 9000 Sorprende!"
+  hiddenInSingle: true
 ---
 
 *Canale: RRS MetalDetector Fede&Anto*

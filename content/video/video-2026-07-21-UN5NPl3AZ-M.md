@@ -7,6 +7,7 @@ categories: ["video"]
 cover:
   image: "https://img.youtube.com/vi/UN5NPl3AZ-M/hqdefault.jpg"
   alt: "BOSCO GIÀ RIPULITO... E ABBIAMO TROVATO UNA MAREA DI TARGET! 😱 Legend 2 vs Magnetar 9000"
+  hiddenInSingle: true
 ---
 
 *Canale: RRS MetalDetector Fede&Anto*

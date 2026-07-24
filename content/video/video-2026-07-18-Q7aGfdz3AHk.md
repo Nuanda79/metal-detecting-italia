@@ -7,6 +7,7 @@ categories: ["video"]
 cover:
   image: "https://img.youtube.com/vi/Q7aGfdz3AHk/hqdefault.jpg"
   alt: "🎯 Metal Detecting: Scavare o Andare Oltre? 🤔 #DetectorShopit #LeonardoCiocca #TutorialMetalDetector"
+  hiddenInSingle: true
 ---
 
 *Canale: DetectorShop Italia*

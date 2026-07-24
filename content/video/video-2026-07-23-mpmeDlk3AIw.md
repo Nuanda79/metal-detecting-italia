@@ -7,6 +7,7 @@ categories: ["video"]
 cover:
   image: "https://img.youtube.com/vi/mpmeDlk3AIw/hqdefault.jpg"
   alt: "Target Nascosti ⭐ Bottone Tedesco e Fibbia Maschera Antigas #metaldetecting #lineagotica #vortexvx9"
+  hiddenInSingle: true
 ---
 
 *Canale: DetectorShop Italia*

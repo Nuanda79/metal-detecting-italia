@@ -7,6 +7,7 @@ categories: ["video"]
 cover:
   image: "https://img.youtube.com/vi/1BESbl4s6Gk/hqdefault.jpg"
   alt: "We FOUND 250 Year Old Big LOST Coins Metal Detecting the River!"
+  hiddenInSingle: true
 ---
 
 *Canale: The Hoover Boys*
