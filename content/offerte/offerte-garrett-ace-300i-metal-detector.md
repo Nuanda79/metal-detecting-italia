@@ -1,0 +1,16 @@
+---
+title: "Garrett ACE 300i Metal Detector"
+date: 2026-07-24
+draft: false
+tags: ["offerte", "prodotti"]
+categories: ["offerte"]
+gruppo: "Metal Detector"
+amazon_link: "https://amzn.to/3T5ntEc"
+cover:
+  image: "https://m.media-amazon.com/images/I/51Xdo6MXrKL._SL500_.jpg"
+  alt: "Garrett ACE 300i Metal Detector"
+---
+
+*Link di affiliazione Amazon: se acquisti tramite questo link, riceviamo una piccola commissione senza costi aggiuntivi per te.*
+
+[Vedi su Amazon](https://amzn.to/3T5ntEc)
