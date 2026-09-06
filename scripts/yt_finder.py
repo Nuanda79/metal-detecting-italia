@@ -20,17 +20,20 @@ import requests
 # CONFIGURAZIONE
 # ---------------------------------------------------------------------------
 
-# Elenco canali: (nome_visualizzato, handle_con_@ OPPURE ID_canale diretto)
+# Elenco canali: (nome_visualizzato, slug_stabile, handle_con_@ OPPURE ID_canale diretto)
+# Lo slug è l'identificativo usato dal filtro di personalizzazione lato sito:
+# deve restare INVARIATO nel tempo anche se cambi il nome_visualizzato, altrimenti
+# gli utenti che hanno già salvato le loro preferenze perdono il filtro su quel canale.
 # Per aggiungerne uno nuovo in futuro basta aggiungere una riga qui.
 CHANNELS = [
-    ("DetectorShop Italia", "UC5Sp7Gb6nKtU8jY4RB8AqSQ"),
-    ("Daniel Facose", "@DanielFaCoseInVan"),
-    ("XP Metal Detectors", "@xpmetaldetector"),
-    ("Nuanda1979", "@Nuanda1979"),
-    ("Detector Center", "UC8fejpBB1om6VjC4GRnPEsw"),
-    ("L'ultimo Recuperante", "@lultimorecuperante"),
-    ("RRS MetalDetector Fede&Anto", "@RRSMetalDetector"),
-    ("The Hoover Boys", "@thehooverboys"),
+    ("DetectorShop Italia", "detectorshop-italia", "UC5Sp7Gb6nKtU8jY4RB8AqSQ"),
+    ("Daniel Facose", "daniel-facose", "@DanielFaCoseInVan"),
+    ("XP Metal Detectors", "xp-metal-detectors", "@xpmetaldetector"),
+    ("Nuanda1979", "nuanda1979", "@Nuanda1979"),
+    ("Detector Center", "detector-center", "UC8fejpBB1om6VjC4GRnPEsw"),
+    ("L'ultimo Recuperante", "ultimo-recuperante", "@lultimorecuperante"),
+    ("RRS MetalDetector Fede&Anto", "rrs-metaldetector", "@RRSMetalDetector"),
+    ("The Hoover Boys", "the-hoover-boys", "@thehooverboys"),
 ]
 
 # Quante ore indietro guardare
@@ -38,6 +41,10 @@ FINESTRA_ORE = 48
 
 # Percorso di output: la cartella content/video/ del sito Hugo
 OUTPUT_DIR = "../metal-detecting-italia/content/video"
+
+# Percorso del file dati canali, usato dal pannello di personalizzazione sul sito
+# (deve stare nella cartella data/ di Hugo, cosi' {{ .Site.Data.canali }} lo legge)
+CANALI_JSON_PATH = "../metal-detecting-italia/data/canali.json"
 
 API_BASE = "https://www.googleapis.com/youtube/v3"
 
@@ -111,7 +118,7 @@ def raccogli_video(api_key):
     ora_limite = datetime.datetime.now(datetime.timezone.utc) - datetime.timedelta(hours=FINESTRA_ORE)
     tutti_i_video = []
 
-    for nome_canale, identificativo in CHANNELS:
+    for nome_canale, slug_canale, identificativo in CHANNELS:
         print(f"Controllo canale: {nome_canale}...")
         try:
             playlist_id = risolvi_uploads_playlist(api_key, identificativo)
@@ -131,6 +138,7 @@ def raccogli_video(api_key):
 
         for v in video:
             v["canale"] = nome_canale
+            v["canale_slug"] = slug_canale
             tutti_i_video.append(v)
 
         print(f"  Trovati {len(video)} video recenti.")
@@ -162,6 +170,7 @@ def genera_file_video(v):
         "draft: false",
         'tags: ["video", "youtube"]',
         'categories: ["video"]',
+        f'canale_slug: "{v["canale_slug"]}"',
         "cover:",
         f'  image: "https://img.youtube.com/vi/{v["video_id"]}/hqdefault.jpg"',
         f'  alt: "{v["titolo"].replace(chr(34), chr(39))}"',
@@ -192,6 +201,35 @@ def salva_video(video):
 
 
 # ---------------------------------------------------------------------------
+# STEP 5: ESPORTA LA LISTA CANALI PER IL PANNELLO DI PERSONALIZZAZIONE
+# ---------------------------------------------------------------------------
+
+def esporta_canali_json():
+    """Scrive data/canali.json con nome e slug di tutti i canali monitorati.
+
+    Il sito Hugo legge questo file per costruire dinamicamente i chip del
+    pannello 'Filtra' in homepage/lista video: se aggiungi o togli un canale
+    da CHANNELS, il pannello si aggiorna da solo al prossimo giro di questo
+    script, senza bisogno di toccare il template.
+    """
+    import json
+
+    cartella_dati = os.path.dirname(CANALI_JSON_PATH)
+    if cartella_dati:
+        os.makedirs(cartella_dati, exist_ok=True)
+
+    elenco = [
+        {"nome": nome, "slug": slug}
+        for nome, slug, _ in CHANNELS
+    ]
+
+    with open(CANALI_JSON_PATH, "w", encoding="utf-8") as f:
+        json.dump(elenco, f, ensure_ascii=False, indent=2)
+
+    print(f"Elenco canali esportato in: {CANALI_JSON_PATH}")
+
+
+# ---------------------------------------------------------------------------
 # MAIN
 # ---------------------------------------------------------------------------
 
@@ -201,6 +239,8 @@ def main():
         print("ERRORE: variabile d'ambiente YOUTUBE_API_KEY non impostata.")
         print('Esegui prima: $env:YOUTUBE_API_KEY="la-tua-chiave"  (PowerShell)')
         sys.exit(1)
+
+    esporta_canali_json()
 
     video = raccogli_video(api_key)
 
