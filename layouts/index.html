@@ -10,9 +10,21 @@
 
   {{- with $news }}
   {{- $ultima := index . 0 }}
+  {{- $testo := $ultima.RawContent }}
+  {{- $sottotitolo := "" }}
+  {{- $capi := findRE "(?m)^### .+$" $testo 1 }}
+  {{- if gt (len $capi) 0 }}
+    {{- $sottotitolo = strings.TrimPrefix "### " (index $capi 0) }}
+  {{- else }}
+    {{- $forumRighe := findRE "(?m)^- \\[[^\\]]+\\]" $testo 1 }}
+    {{- if gt (len $forumRighe) 0 }}
+      {{- $riga := strings.TrimPrefix "- [" (index $forumRighe 0) }}
+      {{- $sottotitolo = strings.TrimSuffix "]" $riga }}
+    {{- end }}
+  {{- end }}
   <a class="home-card" href="{{ $ultima.Permalink }}">
     <div class="home-card-etichetta">News di oggi</div>
-    <div class="home-card-titolo">{{ $ultima.Title }}</div>
+    <div class="home-card-titolo">{{ if $sottotitolo }}{{ $sottotitolo }}{{ else }}{{ $ultima.Title }}{{ end }}</div>
     <div class="home-card-data">{{ $ultima.Date.Format "2 January 2006" }}</div>
   </a>
   {{- end }}
