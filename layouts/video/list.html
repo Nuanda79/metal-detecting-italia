@@ -1,0 +1,128 @@
+{{- define "main" }}
+
+<header class="page-header">
+  {{- partial "breadcrumbs.html" . }}
+  <h1>{{ .Title }}</h1>
+  {{- if .Description }}
+  <div class="post-description">{{ .Description | markdownify }}</div>
+  {{- end }}
+</header>
+
+{{- if site.Data.canali }}
+<div class="video-filtro">
+  <button id="video-filtro-toggle" class="video-filtro-toggle">
+    <span>Filtra canali</span>
+  </button>
+  <div id="video-filtro-pannello" class="video-filtro-pannello" hidden>
+    <p class="video-filtro-testo">Mostra video di:</p>
+    <div class="video-filtro-chips">
+      {{- range site.Data.canali }}
+      <button class="video-chip is-attiva" data-slug="{{ .slug }}">{{ .nome }}</button>
+      {{- end }}
+    </div>
+  </div>
+</div>
+{{- end }}
+
+{{- $paginator := .Paginate .Pages }}
+<div class="video-griglia">
+  {{- range $paginator.Pages }}
+  <a class="video-card" href="{{ .Permalink }}" data-canale="{{ .Params.canale_slug }}">
+    {{- with .Params.cover.image }}
+    <div class="video-card-img">
+      <img src="{{ . }}" alt="{{ $.Title }}" loading="lazy">
+    </div>
+    {{- end }}
+    <div class="video-card-corpo">
+      <div class="video-card-titolo">{{ .Title }}</div>
+      <div class="video-card-meta">{{ .Date.Format "2 January 2006" }}</div>
+    </div>
+  </a>
+  {{- end }}
+</div>
+
+{{- if gt $paginator.TotalPages 1 }}
+{{ partial "pagination.html" . }}
+{{- end }}
+
+{{- end }}{{- /* end main */ -}}
+
+<style>
+.video-filtro { margin: 0 0 1.5rem; }
+.video-filtro-toggle {
+  font-size: 14px; padding: 8px 14px; border-radius: 20px;
+  border: 1px solid var(--border, #ccc); background: transparent; cursor: pointer;
+}
+.video-filtro-pannello { margin-top: 10px; padding: 12px 0; }
+.video-filtro-testo { font-size: 13px; margin: 0 0 8px; opacity: 0.7; }
+.video-filtro-chips { display: flex; flex-wrap: wrap; gap: 8px; }
+.video-chip {
+  font-size: 13px; padding: 6px 14px; border-radius: 20px; cursor: pointer;
+  border: 1px solid #B8863E; background: transparent; color: #B8863E;
+}
+.video-chip.is-attiva { background: #1B3A2E; border-color: #1B3A2E; color: #F0E4CC; }
+.video-griglia {
+  display: grid; grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+  gap: 16px; margin-top: 1rem;
+}
+.video-card { display: block; text-decoration: none; color: inherit; }
+.video-card-img img { width: 100%; border-radius: 8px; display: block; }
+.video-card-corpo { padding: 8px 2px; }
+.video-card-titolo { font-size: 14px; font-weight: 600; line-height: 1.3; }
+.video-card-meta { font-size: 12px; opacity: 0.6; margin-top: 4px; }
+</style>
+
+<script>
+(function () {
+  var CHIAVE = "mdi_canali_esclusi";
+
+  function leggiEsclusi() {
+    try {
+      return JSON.parse(localStorage.getItem(CHIAVE) || "[]");
+    } catch (e) {
+      return [];
+    }
+  }
+
+  function salvaEsclusi(lista) {
+    localStorage.setItem(CHIAVE, JSON.stringify(lista));
+  }
+
+  function applicaFiltro(esclusi) {
+    document.querySelectorAll(".video-card").forEach(function (card) {
+      var slug = card.getAttribute("data-canale");
+      card.style.display = esclusi.indexOf(slug) !== -1 ? "none" : "";
+    });
+    document.querySelectorAll(".video-chip").forEach(function (chip) {
+      var slug = chip.getAttribute("data-slug");
+      chip.classList.toggle("is-attiva", esclusi.indexOf(slug) === -1);
+    });
+  }
+
+  var esclusi = leggiEsclusi();
+  applicaFiltro(esclusi);
+
+  var toggleBtn = document.getElementById("video-filtro-toggle");
+  var pannello = document.getElementById("video-filtro-pannello");
+  if (toggleBtn && pannello) {
+    toggleBtn.addEventListener("click", function () {
+      pannello.hidden = !pannello.hidden;
+    });
+  }
+
+  document.querySelectorAll(".video-chip").forEach(function (chip) {
+    chip.addEventListener("click", function () {
+      var slug = chip.getAttribute("data-slug");
+      var lista = leggiEsclusi();
+      var idx = lista.indexOf(slug);
+      if (idx === -1) {
+        lista.push(slug);
+      } else {
+        lista.splice(idx, 1);
+      }
+      salvaEsclusi(lista);
+      applicaFiltro(lista);
+    });
+  });
+})();
+</script>
