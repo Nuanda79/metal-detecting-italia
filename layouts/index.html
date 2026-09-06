@@ -1,0 +1,70 @@
+{{- define "main" }}
+
+{{- partial "home_info.html" . }}
+
+{{- $news := (where site.RegularPages "Section" "news").ByDate.Reverse }}
+{{- $video := (where site.RegularPages "Section" "video").ByDate.Reverse }}
+{{- $offerte := (where site.RegularPages "Section" "offerte").ByTitle }}
+
+<div class="home-griglia">
+
+  {{- with $news }}
+  {{- $ultima := index . 0 }}
+  <a class="home-card" href="{{ $ultima.Permalink }}">
+    <div class="home-card-etichetta">News di oggi</div>
+    <div class="home-card-titolo">{{ $ultima.Title }}</div>
+    <div class="home-card-data">{{ $ultima.Date.Format "2 January 2006" }}</div>
+  </a>
+  {{- end }}
+
+  {{- with $video }}
+  {{- $ultimo := index . 0 }}
+  <a class="home-card" href="{{ $ultimo.Permalink }}">
+    {{- with $ultimo.Params.cover.image }}
+    <div class="home-card-img"><img src="{{ . }}" alt="{{ $ultimo.Title }}" loading="lazy"></div>
+    {{- end }}
+    <div class="home-card-etichetta">Video di oggi</div>
+    <div class="home-card-titolo">{{ $ultimo.Title }}</div>
+    <div class="home-card-data">{{ $ultimo.Date.Format "2 January 2006" }}</div>
+  </a>
+  {{- end }}
+
+  {{- $n := len $offerte }}
+  {{- if gt $n 0 }}
+  {{- $indice := mod now.YearDay $n }}
+  {{- $prodotto := index $offerte $indice }}
+  <a class="home-card" href="{{ $prodotto.Params.amazon_link }}" target="_blank" rel="nofollow sponsored noopener">
+    {{- with $prodotto.Params.cover.image }}
+    <div class="home-card-img"><img src="{{ . }}" alt="{{ $prodotto.Title }}" loading="lazy"></div>
+    {{- end }}
+    <div class="home-card-etichetta">Offerta di oggi</div>
+    <div class="home-card-titolo">{{ $prodotto.Title }}</div>
+  </a>
+  {{- end }}
+
+</div>
+
+<div class="home-link-sezioni">
+  <a href="{{ "news/" | absLangURL }}">Tutte le news →</a>
+  <a href="{{ "video/" | absLangURL }}">Tutti i video →</a>
+  <a href="{{ "offerte/" | absLangURL }}">Tutte le offerte →</a>
+</div>
+
+<style>
+.home-griglia {
+  display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: 16px; margin: 1.5rem 0;
+}
+.home-card {
+  display: block; text-decoration: none; color: inherit;
+  border: 1px solid var(--border, #ddd); border-radius: 12px; padding: 14px;
+}
+.home-card-img { margin: -14px -14px 10px; }
+.home-card-img img { width: 100%; border-radius: 12px 12px 0 0; display: block; }
+.home-card-etichetta { font-size: 12px; text-transform: uppercase; letter-spacing: 0.03em; color: #B8863E; font-weight: 600; margin-bottom: 4px; }
+.home-card-titolo { font-size: 16px; font-weight: 600; line-height: 1.35; margin-bottom: 6px; }
+.home-card-data { font-size: 12px; opacity: 0.6; }
+.home-link-sezioni { display: flex; flex-wrap: wrap; gap: 18px; margin: 1rem 0 2rem; font-size: 14px; }
+</style>
+
+{{- end }}{{- /* end main */ -}}
