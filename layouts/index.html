@@ -30,7 +30,16 @@
   {{- end }}
 
   {{- with $video }}
-  {{- $ultimo := index . 0 }}
+  {{- $ultimaData := (index . 0).Date.Format "2006-01-02" }}
+  {{- $delGiorno := slice }}
+  {{- range . }}
+    {{- if eq (.Date.Format "2006-01-02") $ultimaData }}
+      {{- $delGiorno = $delGiorno | append . }}
+    {{- end }}
+  {{- end }}
+  {{- $n := len $delGiorno }}
+  {{- $indice := mod now.YearDay $n }}
+  {{- $ultimo := index $delGiorno $indice }}
   <a class="home-card" href="{{ $ultimo.Permalink }}">
     {{- with $ultimo.Params.cover.image }}
     <div class="home-card-img"><img src="{{ . }}" alt="{{ $ultimo.Title }}" loading="lazy"></div>
@@ -49,7 +58,7 @@
     {{- with $prodotto.Params.cover.image }}
     <div class="home-card-img"><img src="{{ . }}" alt="{{ $prodotto.Title }}" loading="lazy"></div>
     {{- end }}
-    <div class="home-card-etichetta">Offerta di oggi</div>
+    <div class="home-card-etichetta">Consiglio di oggi</div>
     <div class="home-card-titolo">{{ $prodotto.Title }}</div>
   </a>
   {{- end }}
