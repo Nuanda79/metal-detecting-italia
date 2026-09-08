@@ -1,11 +1,16 @@
 {{- with site.Params.homeInfoParams }}
-<article class="first-entry home-info">
-    <header class="entry-header">
-        <h1>{{ .Title | markdownify }}</h1>
-    </header>
-    <div class="entry-content md-content">
-        {{ $opts := dict "display" "block" }}
-        {{ .Content | $.Page.RenderString $opts }}
-    </div>
-</article>
+<div class="home-benvenuto">
+    {{ $opts := dict "display" "block" }}
+    {{ .Content | $.Page.RenderString $opts }}
+</div>
 {{- end -}}
+
+<style>
+.home-benvenuto {
+  font-size: 15px;
+  opacity: 0.75;
+  margin: 0.5rem 0 1.5rem;
+  max-width: 55ch;
+}
+.home-benvenuto p { margin: 0; }
+</style>
