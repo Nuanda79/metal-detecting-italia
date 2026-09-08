@@ -65,18 +65,18 @@
 <style>
 .home-griglia {
   display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
-  gap: 16px; margin: 1.5rem 0;
+  gap: 16px; margin: 1.5rem auto; max-width: 900px;
 }
 .home-card {
-  display: block; text-decoration: none; color: inherit;
-  border: 1px solid var(--border, #ddd); border-radius: 12px; padding: 14px;
+  display: block; text-decoration: none; color: inherit; text-align: center;
+  border: 1px solid var(--border, #ddd); border-radius: 12px; padding: 16px;
 }
-.home-card-img { margin: -14px -14px 10px; }
+.home-card-img { margin: -16px -16px 12px; }
 .home-card-img img { width: 100%; border-radius: 12px 12px 0 0; display: block; }
-.home-card-etichetta { font-size: 12px; text-transform: uppercase; letter-spacing: 0.03em; color: #B8863E; font-weight: 600; margin-bottom: 4px; }
-.home-card-titolo { font-size: 16px; font-weight: 600; line-height: 1.35; margin-bottom: 6px; }
+.home-card-etichetta { font-size: 13px; text-transform: uppercase; letter-spacing: 0.05em; color: #B8863E; font-weight: 700; margin-bottom: 6px; }
+.home-card-titolo { font-size: 18px; font-weight: 600; line-height: 1.35; margin-bottom: 8px; }
 .home-card-data { font-size: 12px; opacity: 0.6; }
-.home-link-sezioni { display: flex; flex-wrap: wrap; gap: 18px; margin: 1rem 0 2rem; font-size: 14px; }
+.home-link-sezioni { display: flex; flex-wrap: wrap; justify-content: center; gap: 18px; margin: 1rem 0 2rem; font-size: 14px; }
 </style>
 
 {{- end }}{{- /* end main */ -}}
