@@ -1,0 +1,17 @@
+<link rel="manifest" href="{{ "manifest.json" | relURL }}">
+<meta name="theme-color" content="#1B3A2E">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="apple-mobile-web-app-title" content="MD Italia">
+
+<script>
+if ("serviceWorker" in navigator) {
+  window.addEventListener("load", function () {
+    navigator.serviceWorker
+      .register("{{ "sw.js" | relURL }}")
+      .catch(function (err) {
+        console.warn("Registrazione service worker fallita:", err);
+      });
+  });
+}
+</script>
